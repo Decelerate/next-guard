@@ -1,5 +1,5 @@
 {
-  "name": "next-guard",
+  "name": "@decelerate/next-guard",
   "version": "0.0.1",
   "description": "next-guard is a lightweight and flexible package for adding security to your Next.js functions.",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
     "build": "tsc && npx tsc-alias",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "bp": "yarn build && npm publish"
+    "bp": "yarn build && npm publish --scope=decelerate --access=public"
   },
   "repository": {
     "type": "git",
