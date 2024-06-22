@@ -1,0 +1,44 @@
+{
+  "name": "next-guard",
+  "version": "0.0.1",
+  "description": "next-guard is a lightweight and flexible package for adding security to your Next.js functions.",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "dev": "nodemon",
+    "start": "ts-node src/index.ts",
+    "build": "tsc && npx tsc-alias",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "bp": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Decelerate/next-guard.git"
+  },
+  "keywords": [
+    "stancer",
+    "stancer api",
+    "api",
+    "typescript"
+  ],
+  "author": "Andy \"Arky\" SANT",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Decelerate/next-guard/issues"
+  },
+  "homepage": "https://github.com/Decelerate/next-guard#readme",
+  "devDependencies": {
+    "eslint": "^9.5.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.8.2",
+    "tsconfig-paths": "^4.1.2",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.9.5"
+  }
+}
