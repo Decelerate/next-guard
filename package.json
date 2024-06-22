@@ -1,5 +1,5 @@
 {
-  "name": "@decelerate/next-guard",
+  "name": "next-guard",
   "version": "0.0.1",
   "description": "next-guard is a lightweight and flexible package for adding security to your Next.js functions.",
   "main": "dist/index.js",
