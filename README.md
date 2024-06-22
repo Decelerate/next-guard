@@ -52,6 +52,32 @@ const myUnprotectedFunction = async () => {
 const myProtectedFunction = Guard(myUnprotectedFunction, AuthGuard)
 ```
 
+*example.ts*
+```ts
+import { Guard } from "@decelerate/next-guard";
+
+const AuthGuard = async () => {
+  // Your authentication logic here
+  const user = await auth();
+
+  // You can return any type of data in case of error, Guard will automatically type it
+  if (!user) {
+    return {
+      error: "You are not authenticated"
+      status: 401
+    };
+  }
+
+  return true;
+};
+
+const myUnprotectedFunction = async () => {
+  return prisma.user.findMany();
+}
+
+const myProtectedFunction = Guard(myUnprotectedFunction, AuthGuard)
+```
+
 ---
 
 # Contribute
