@@ -1,4 +1,4 @@
-import { ReturnTypeOverride, UnionOfFunctionReturnTypes } from "./types/next-guard";
+import { ReturnTypeOverride, UnionOfFunctionReturnTypes } from "./types";
 
 export const Guard = <
   F extends (...args: any) => any,
@@ -21,3 +21,4 @@ export const Guard = <
     return await func(...args);
   };
 };
+
