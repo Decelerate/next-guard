@@ -20,9 +20,15 @@
     "url": "git+https://github.com/Decelerate/next-guard.git"
   },
   "keywords": [
-    "stancer",
-    "stancer api",
-    "api",
+    "decelerate",
+    "next-guard",
+    "next.js",
+    "next",
+    "guard",
+    "security",
+    "functions security",
+    "actions security",
+    "next.js security",
     "typescript"
   ],
   "author": "Andy \"Arky\" SANT",
