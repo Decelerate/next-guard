@@ -13,7 +13,7 @@
     "build": "tsc && npx tsc-alias",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
-    "bp": "npm run build && npm publish"
+    "bp": "yarn build && npm publish"
   },
   "repository": {
     "type": "git",
