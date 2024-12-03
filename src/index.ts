@@ -1,33 +1,49 @@
-type ExcludeTrue<T> = T extends true ? never : T;
+export const isGuardError = (value: unknown): value is GuardError => {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "message" in value &&
+    "status" in value &&
+    "error" in value
+  );
+};
 
-export type UnionOfFunctionReturnTypes<
-  FuncArray extends ((...args: any) => any)[]
-> = ExcludeTrue<Awaited<ReturnType<FuncArray[number]>>>;
+export type GuardError = {
+  message: string;
+  status: number;
+  error: string;
+};
 
-export type ReturnTypeOverride<
-  F extends (...args: any) => any,
-  O,
-  A = true
-> = true extends A ? Awaited<ReturnType<F>> | Awaited<O> : ReturnType<F> | O;
+export type VerifyReturn = GuardError | boolean;
 
 export const Guard = <
-  F extends (...args: any) => any,
-  V extends ((...args: any) => any)[]
+  F extends (...args: Parameters<F>) => ReturnType<F>,
+  V extends (() => Promise<VerifyReturn>)[]
 >(
   func: F,
   ...verification: V
 ) => {
   return async (
     ...args: Parameters<F>
-  ): Promise<ReturnTypeOverride<F, UnionOfFunctionReturnTypes<V>>> => {
-    for (const verify of verification) {
+  ): Promise<ReturnType<F> | GuardError> => {
+    for (let verify of verification) {
+      // Beautiful fix made by @xonlly https://github.com/xonlly
+      /**
+       * For a bit of context, this issue was provided by NextJS, which doesn't authorize
+       * server functions to be non async, so we need to check if the function is a
+       * Promise and await it if it is.
+       */
+      if (verify instanceof Promise) {
+        verify = await verify;
+      }
+
       const result = await verify();
 
-      if (!result) {
+      if (isGuardError(result)) {
         return result;
       }
     }
 
-    return await func(...args);
+    return func(...args);
   };
 };
