@@ -18,7 +18,10 @@ export type VerifyReturn = GuardError | boolean;
 
 export const Guard = <
   F extends (...args: Parameters<F>) => ReturnType<F>,
-  V extends (() => Promise<VerifyReturn>)[]
+  V extends (
+    | (() => Promise<VerifyReturn>)
+    | Promise<() => Promise<VerifyReturn>>
+  )[]
 >(
   func: F,
   ...verification: V
